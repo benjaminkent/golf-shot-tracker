@@ -25,3 +25,5 @@ body {
   margin: 0;
 }
 </style>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
