@@ -28,14 +28,29 @@ export const useGolf = () => {
       clubs: ['52 Degree', '56 Degree', '58 Degree', '60 Degree'],
     },
   ])
+  const shotOptions = reactive([1, 5, 10])
+
   const selectedClubs = ref([])
   const confirmedClubs = ref([])
 
-  // const showConfirmedClubs = computed(() => confirmedClubs)
+  const selectedAmountOfShots = ref(5)
+  const confirmedShots = ref(0)
+
+  const selectingClubs = ref(true)
+  const selectingShots = ref(false)
+  const showShotTracker = ref(false)
 
   const confirmClubSelection = () => {
     confirmedClubs.value = selectedClubs.value
     selectedClubs.value = []
+    selectingClubs.value = false
+    selectingShots.value = true
+  }
+
+  const confirmShotSelection = () => {
+    confirmedShots.value = selectedAmountOfShots.value
+    selectingShots.value = false
+    showShotTracker.value = true
   }
 
   return {
@@ -43,5 +58,12 @@ export const useGolf = () => {
     selectedClubs,
     confirmClubSelection,
     confirmedClubs,
+    selectingClubs,
+    shotOptions,
+    selectedAmountOfShots,
+    selectingShots,
+    showShotTracker,
+    confirmedShots,
+    confirmShotSelection,
   }
 }
