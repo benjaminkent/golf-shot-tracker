@@ -1,20 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  name: "App",
-  components: {
-    HelloWorld
-  }
-});
+  setup() {
+    return {}
+  },
+})
 </script>
 
 <style lang="scss">
@@ -22,8 +19,9 @@ export default Vue.extend({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #222;
+}
+body {
+  margin: 0;
 }
 </style>
