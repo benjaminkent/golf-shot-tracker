@@ -23,6 +23,7 @@ export default Vue.extend({
 }
 body {
   margin: 0;
+  background-color: #f2f5ea;
 }
 </style>
 
