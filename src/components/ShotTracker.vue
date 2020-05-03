@@ -1,6 +1,6 @@
 <template>
   <div class="shot-tracker">
-    <p>Driver</p>
+    <p>{{ clubName }}</p>
     <ul>
       <li v-for="(check, index) in shots" :key="index" class="tracker">
         <label class="container">
@@ -18,6 +18,7 @@ import Vue from 'vue'
 export default Vue.extend({
   props: {
     shots: Number,
+    clubName: String,
   },
   setup() {
     return {}
@@ -83,7 +84,7 @@ ul {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: #09e85e;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
