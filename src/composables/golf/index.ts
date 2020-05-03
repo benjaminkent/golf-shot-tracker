@@ -1,4 +1,4 @@
-import { ref, reactive, computed } from '@vue/composition-api'
+import { ref, reactive } from '@vue/composition-api'
 
 interface Option {
   clubType: string
@@ -53,6 +53,12 @@ export const useGolf = () => {
     showShotTracker.value = true
   }
 
+  const reset = () => {
+    selectingClubs.value = true
+    selectingShots.value = false
+    showShotTracker.value = false
+  }
+
   return {
     options,
     selectedClubs,
@@ -65,5 +71,6 @@ export const useGolf = () => {
     showShotTracker,
     confirmedShots,
     confirmShotSelection,
+    reset,
   }
 }

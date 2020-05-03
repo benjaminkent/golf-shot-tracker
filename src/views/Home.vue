@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <div>
-      <h2 class="title">Keep track of your shots on the range.</h2>
-      <h3 class="sub-title">
-        Choose the clubs you will be practicing and get started.
+      <h2 class="title">Driving range shot tracker</h2>
+      <p v-if="!selectingClubs" @click="reset" class="reset">Reset</p>
+      <h3 v-if="selectingClubs" class="sub-title">
+        Choose the clubs you will be practicing to get started.
       </h3>
-      <!-- <div v-if="selectingClubs" class="mult-container"> -->
-      <div class="mult-container">
+      <div v-if="selectingClubs" class="mult-container">
         <multiselect
           v-model="selectedClubs"
           :options="options"
@@ -19,19 +19,21 @@
         />
         <button @click="confirmClubSelection">Confirm Club Selection</button>
       </div>
-      <!-- <div v-if="selectingShots" class="mult-container"> -->
-      <div class="mult-container">
+      <div v-if="selectingShots" class="mult-container">
         <h3>How many shot will you track for each club?</h3>
         <multiselect
           v-model="selectedAmountOfShots"
           :options="shotOptions"
           :searchable="false"
         />
-        <button @click="confirmShotSelection">Start Tracking Shot</button>
+        <button @click="confirmShotSelection">Start Tracking Shots</button>
       </div>
-      <!-- <div v-if="showShotTracker" class="shots-container"> -->
-      <div class="shots-container">
-        <shot-tracker :shots="confirmedShots" />
+      <div v-if="showShotTracker" class="shots-container">
+        <ul>
+          <li v-for="(club, index) in confirmedClubs" :key="index">
+            <shot-tracker :shots="confirmedShots" :club-name="club" />
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -59,6 +61,7 @@ export default Vue.extend({
       showShotTracker,
       confirmShotSelection,
       confirmedShots,
+      reset,
     } = useGolf()
 
     return {
@@ -73,6 +76,7 @@ export default Vue.extend({
       showShotTracker,
       confirmShotSelection,
       confirmedShots,
+      reset,
     }
   },
 })
@@ -81,6 +85,15 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .home {
   margin: 20px;
+}
+.title {
+  margin-bottom: 0;
+}
+.reset {
+  color: #e75a7c;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0;
 }
 .mult-container {
   max-width: 600px;
@@ -96,11 +109,18 @@ export default Vue.extend({
     font-size: 1em;
     margin: 10px 0;
     width: 100%;
-    padding: 12px 0;
+    padding: 10px 0;
     cursor: pointer;
   }
   button:hover {
     background-color: #d65170;
+  }
+}
+.shots-container {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
 }
 
