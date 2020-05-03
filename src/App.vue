@@ -23,5 +23,8 @@ export default Vue.extend({
 }
 body {
   margin: 0;
+  background-color: #f2f5ea;
 }
 </style>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
